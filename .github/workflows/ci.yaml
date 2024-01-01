@@ -2,27 +2,19 @@ on:
   push:
   pull_request:
     types: [opened, synchronize]
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Ruby CI
-
+    name: script/cibuild
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+      - name: build
+        run: script/bootstrap
+      - name: test
+        run: script/cibuild
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7
-        bundler-cache: true # 이 설정은 Gemfile에 나열된 gem들을 캐시하여 빌드 속도를 개선합니다.
-
-    - name: Install dependencies
-      run: bundle install # Gemfile에 명시된 gem들을 설치합니다.
-
-    - name: Bootstrap
-      run: script/bootstrap # 프로젝트 초기화 스크립트를 실행합니다.
-
-    - name: Run tests
-      run: script/cibuild # 테스트를 실행합니다.
 
