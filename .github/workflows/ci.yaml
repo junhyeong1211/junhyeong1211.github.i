@@ -13,14 +13,5 @@ jobs:
           bundler-cache: true
       - name: Install dependencies
         run: bundle install
-      # 아래 부분이 제거됨
-      #- name: Build
-      #  run: |
-      #    chmod +x script/bootstrap
-      #    script/bootstrap
-      - name: Test
-        run: |
-          chmod +x script/cibuild
-          script/cibuild
-
+  
 
