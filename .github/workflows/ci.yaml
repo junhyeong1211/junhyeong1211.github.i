@@ -22,6 +22,7 @@ jobs:
       - name: Test
         run: |
           chmod +x script/cibuild
+          chmod +x script/validate-html  # 추가된 명령
           script/cibuild
 
 
