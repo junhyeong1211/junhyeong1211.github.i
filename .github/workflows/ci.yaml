@@ -1,0 +1,29 @@
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1.165.1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Add platform to Gemfile.lock
+        run: bundle lock --add-platform x86_64-linux
+      - name: Install dependencies
+        run: bundle install
+      - name: Build
+        run: |
+          chmod +x script/bootstrap
+          script/bootstrap
+      - name: Test
+        run: |
+          chmod +x script/cibuild
+          chmod +x script/validate-html  # 추가된 명령
+          script/cibuild
+
+
+

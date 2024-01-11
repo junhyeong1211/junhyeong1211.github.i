@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SITE CONFIGURATION
 baseurl: "/Type-on-Strap"
 url: "https://sylhare.github.io"
@@ -55,3 +56,10 @@ exclude: [".jekyll-cache", ".jekyll-metadata", ".idea", "vendor/*", "assets/node
 
 # theme: type-on-strap                                  # if using the theme as a jekyll theme gem
 remote_theme: sylhare/Type-on-Strap                     # If using as a remote_theme in github
+=======
+title: jh's coding blog
+description: Practice is the only way to survive.
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-hacker
+>>>>>>> 3f8a06bfc571421bbe216b5f6ae2b38c478032b4
