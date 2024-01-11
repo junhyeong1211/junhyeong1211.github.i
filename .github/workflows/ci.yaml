@@ -5,14 +5,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: script/cibuild
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1.165.1
         with:
-          ruby-version: 2.7
-          bundler-cache: false
-      - name: build
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Add platform to Gemfile.lock
+        run: bundle lock --add-platform x86_64-linux
+      - name: Install dependencies
+        run: bundle install
+      - name: Build
         run: script/bootstrap
-      - name: test
+      - name: Test
         run: script/cibuild
+
+
+
