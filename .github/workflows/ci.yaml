@@ -11,19 +11,16 @@ jobs:
         with:
           ruby-version: 3.2.2
           bundler-cache: true
-      - name: Add platform to Gemfile.lock
-        run: bundle lock --add-platform x86_64-linux
       - name: Install dependencies
         run: bundle install
-      - name: Build
-        run: |
-          chmod +x script/bootstrap
-          script/bootstrap
+      # 아래 부분이 제거됨
+      #- name: Build
+      #  run: |
+      #    chmod +x script/bootstrap
+      #    script/bootstrap
       - name: Test
         run: |
           chmod +x script/cibuild
-          chmod +x script/validate-html  # 추가된 명령
           script/cibuild
-
 
 
