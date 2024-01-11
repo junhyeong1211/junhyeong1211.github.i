@@ -2,17 +2,19 @@ on:
   push:
   pull_request:
     types: [opened, synchronize]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     name: script/cibuild
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup Ruby, JRuby and TruffleRuby
-      uses: ruby/setup-ruby@v1.165.1
-    - name: build
-      run: script/bootstrap
-    - name: test
-      run: script/cibuild
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1.165.1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: build
+        run: script/bootstrap
+      - name: test
+        run: script/cibuild
+
 
