@@ -15,10 +15,9 @@ jobs:
         run: bundle lock --add-platform x86_64-linux
       - name: Install dependencies
         run: bundle install
-      - name: Build
-        run: |
-          chmod +x script/bootstrap
-          script/bootstrap
+      - name: build
+        run: script/bootstrap
+
       - name: Test
         run: |
           chmod +x script/cibuild
